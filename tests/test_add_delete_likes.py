@@ -3,7 +3,6 @@ import requests
 import allure
 
 from helpers import is_liked, get_post_likes
-
 from config import POSTS, PRIVATE_OWNER_ID, API_ADD_LIKES, API_DELETE_LIKES
 
 
@@ -42,9 +41,7 @@ def test_add_delete_likes_private_profile(params, post_id, method):
 def test_add_delete_likes_private_negative(params, item_id, msg, status, method):
     params["item_id"] = item_id
     response = requests.get(method, params=params).json()
-
     assert response.get('response') is None, "В ответе должен отсутствовать response ключ"
-
     error = response['error']
     assert error['error_code'] == status, "Неверный код ошибки"
     assert error['error_msg'] == msg, "Неверное сообщение об ошибке"
