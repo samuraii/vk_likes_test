@@ -4,7 +4,7 @@ Testing of https://vk.com/dev/likes methods
 
 ## Install
 
-Take time to look up the install.sh script before usage.
+1) Use ```install.sh``` for installation, or follow the same logic to create initial setup. (_Take time to look up the install.sh script before usage_)
 
 ```bash
 # Linux or MacOS
@@ -12,9 +12,9 @@ chmod u+x install.sh
 ./install.sh
 ```
 
-1) Before usage follow the https://vk.com/dev/access_token to get the access_token.
+2) Follow the https://vk.com/dev/access_token to obtain the access_token.
 
-2) Fill the .env file in root of the project with the following:
+3) Fill the .env file in root of the project with the following:
 
 ```bash
 ACCESS_TOKEN={YOUR_ACCESS_TOKEN}
