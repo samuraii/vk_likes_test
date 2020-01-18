@@ -32,8 +32,7 @@ def test_add_delete_likes_private_profile(params, post_id, method):
 
 @allure.story("Методы likes.add likes.delete")
 @pytest.mark.parametrize("item_id, msg, status",
-                         [(-1, 'One of the parameters specified was missing or invalid: item_id should be positive',
-                           100),
+                         [(-1, 'One of the parameters specified was missing or invalid: item_id should be positive', 100),
                           ("Ten", 'One of the parameters specified was missing or invalid: item_id not integer', 100)],
                          ids=["Negative value", "String value"])
 @pytest.mark.parametrize("method", [API_ADD_LIKES, API_DELETE_LIKES], ids=["likes.add", "likes.delete"])
@@ -53,7 +52,7 @@ def test_add_like(params, add_likes_url, not_liked_post):
     """Проверка на удаление или добавление лайка посту в зависимости от исходного"""
     post = not_liked_post["post_id"]
     params["item_id"] = post
-    requests.get(API_ADD_LIKES, params=params).json()
+    requests.get(add_likes_url, params=params).json()
     likes = get_post_likes(post, params)
     assert is_liked(post, params), "Пост не добавилсся в лайки пользователю"
     assert likes - 1 == not_liked_post["likes"], "У поста должно быть на 1 больше лайков"
@@ -61,10 +60,10 @@ def test_add_like(params, add_likes_url, not_liked_post):
 
 @allure.story("Методы likes.add likes.delete")
 @allure.title("Проверка удаления лайка пользователю")
-def test_delete_like(params, add_likes_url, liked_post):
+def test_delete_like(params, delete_likes_url, liked_post):
     """Проверка на удаление или добавление лайка посту в зависимости от исходного"""
     post = liked_post["post_id"]
     params["item_id"] = post
-    likes = requests.get(API_DELETE_LIKES, params=params).json()
+    likes = requests.get(delete_likes_url, params=params).json()
     assert not is_liked(post, params), "Пост не добавилсся в лайки пользователю"
     assert likes['response']['likes'] + 1 == liked_post["likes"], "У поста должно быть на 1 меньше лайков"

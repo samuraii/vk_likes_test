@@ -7,7 +7,7 @@ from config import POSTS
 
 
 @allure.story("Метод likes.isLiked")
-@allure.title("Проверка ответа метода с валидным и пустым параметром user_id")
+@allure.title("Проверка ответа метода с валидными параметрами")
 def test_is_liked_response_positive(params, is_liked_url):
     params["item_id"] = random.choice(POSTS)
     response = requests.get(is_liked_url, params=params).json()
@@ -18,11 +18,10 @@ def test_is_liked_response_positive(params, is_liked_url):
 
 @allure.story("Метод likes.isLiked")
 @pytest.mark.parametrize("user_id, msg, status",
-                         [(-1, 'One of the parameters specified was missing or invalid: user_id should be positive',
-                           100),
+                         [(-1, 'One of the parameters specified was missing or invalid: user_id should be positive', 100),
                           ("Ten", 'One of the parameters specified was missing or invalid: user_id not integer', 100)],
                          ids=["Negative value", "String value"])
-@allure.title("Проверка ответа метода с валидными параметрами")
+@allure.title("Проверка ответа метода с невалидными параметрами")
 def test_is_liked_response_negative(params, is_liked_url, user_id, msg, status):
     params["user_id"] = user_id
     params["item_id"] = random.choice(POSTS)

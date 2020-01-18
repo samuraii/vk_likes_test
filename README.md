@@ -14,10 +14,10 @@ chmod u+x install.sh
 
 1) Before usage follow the https://vk.com/dev/access_token to get the access_token.
 
-2) Fill the file .env in root of the project with the following lines
+2) Fill the .env file in root of the project with the following:
 
 ```bash
-ACCESS_TOKEN={YOUR_TOKEN}
+ACCESS_TOKEN={YOUR_ACCESS_TOKEN}
 USER_ID={APP_USER_ID} # Standalone-app id
 VK_USER_ID={VK_USER_ID} # Your vk user id
 ```
