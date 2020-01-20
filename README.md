@@ -30,6 +30,4 @@ pytest tests/
 
 ## Report generation
 
-Allure report generates allure-report folder after each run.
-
-To generate report follow https://docs.qameta.io/allure/#_pytest
+Allure report is generated after each run into allure-report folder. To generate the report follow https://docs.qameta.io/allure/#_pytest
